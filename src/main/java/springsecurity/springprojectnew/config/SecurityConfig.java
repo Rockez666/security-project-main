@@ -10,10 +10,10 @@ import springsecurity.springprojectnew.security.AuthProviderImpl;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-//
-//    private final AuthProviderImpl authProvider;
-//
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(authProvider);
-//    }
+
+    private final AuthProviderImpl authProvider;
+
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider);
+    }
 }

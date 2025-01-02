@@ -1,9 +1,6 @@
 package springsecurity.springprojectnew.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +11,8 @@ import java.util.Objects;
 @Setter
 @Table(name = "persons")
 public class Person {
-
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
     private Long id;
     private String username;
     private String password;

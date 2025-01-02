@@ -16,7 +16,6 @@ import java.util.Collections;
 @Component
 @RequiredArgsConstructor
 public class AuthProviderImpl implements AuthenticationProvider {
-    private final PersonRepository personRepository;
     private final PersonDetailsService personService;
 
     @Override
