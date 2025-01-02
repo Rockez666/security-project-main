@@ -17,20 +17,19 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class AuthProviderImpl implements AuthenticationProvider {
     private final PersonRepository personRepository;
-    private final PersonDetailsService personDetailsService;
+    private final PersonDetailsService personService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
 
-       UserDetails personDetails = personDetailsService.loadUserByUsername(username);
+        UserDetails personDetails = personService.loadUserByUsername(username);
 
-       String password = authentication.getCredentials().toString();
-
-       if (!personDetails.getPassword().equals(password)) {
-           throw new BadCredentialsException("Incorrect password");
-       }
-       return new UsernamePasswordAuthenticationToken(personDetails, password, Collections.emptyList());
+        String password = authentication.getCredentials().toString();
+        if (!personDetails.getPassword().equals(password)) {
+            throw new BadCredentialsException("Incorrect password");
+        }
+        return new UsernamePasswordAuthenticationToken(personDetails, password, Collections.emptyList());
     }
 
     @Override
@@ -38,3 +37,4 @@ public class AuthProviderImpl implements AuthenticationProvider {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
 }
+
